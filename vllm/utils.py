@@ -173,12 +173,14 @@ def get_ip() -> str:
     # try ipv4
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
-        s.connect(("dns.google", 80))  # Doesn't need to be reachable
+        #s.connect(("dns.google", 80))
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # Doesn't need to be reachable
         return s.getsockname()[0]
     except OSError:
         # try ipv6
         s = socket.socket(socket.AF_INET6, socket.SOCK_DGRAM)
-        s.connect(("dns.google", 80))
+        #s.connect(("dns.google", 80))
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         return s.getsockname()[0]
 
 
